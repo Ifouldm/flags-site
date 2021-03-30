@@ -4,8 +4,8 @@
       <Searchbar />
       <RegionSelect :regions="regions" @regionChange="regionChange" />
     </div>
-    <CountryList :countries="selectedCountries" />
-    <Pagination />
+    <CountryList :countries="pageCountries" />
+    <Pagination @pageChange="pageChange" :totalRecords="selectedCountries.length" :perPage="perPage" />
   </div>
 </template>
 
@@ -20,7 +20,9 @@ export default {
   data() {
     return {
       allCountries: [],
-      selectedRegion: null
+      selectedRegion: null,
+      currentPage: 1,
+      perPage: 8,
     }
   },
   components: {
@@ -34,7 +36,11 @@ export default {
       return [...new Set(this.allCountries.map((country) => country.region))];
     },
     selectedCountries: function() {
-      return this.allCountries.filter((country) => (!this.selectedRegion || country.region === this.selectedRegion)).slice(0,8);
+      return this.allCountries.filter((country) => (!this.selectedRegion || country.region === this.selectedRegion));
+    },
+    pageCountries: function() {
+      const start = (this.currentPage - 1) * this.perPage;
+      return this.selectedCountries.slice(start, start + this.perPage);
     }
   },
   methods: {
@@ -44,6 +50,9 @@ export default {
     },
     regionChange(newRegion) {
       this.selectedRegion = newRegion;
+    },
+    pageChange(newPage) {
+      this.currentPage = newPage;
     }
   },
   mounted() {
