@@ -2,7 +2,7 @@
   <div class="body">
     <div class="inputs">
       <Searchbar />
-      <RegionSelect :regions="regions" />
+      <RegionSelect :regions="regions" @regionChange="regionChange" />
     </div>
     <CountryList :countries="selectedCountries" />
     <Pagination />
@@ -41,6 +41,9 @@ export default {
     fetchData: async function() {
       const jsonData = await fetch("https://restcountries.eu/rest/v2/all");
       this.allCountries = await jsonData.json();
+    },
+    regionChange(newRegion) {
+      this.selectedRegion = newRegion;
     }
   },
   mounted() {

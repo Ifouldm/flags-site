@@ -1,7 +1,7 @@
 <template>
   <div class="titlebar">
     <h1>Where in the world?</h1>
-    <h3>Dark Mode</h3>
+    <h3><font-awesome-icon icon="moon" />Dark Mode</h3>
   </div>
 </template>
 
