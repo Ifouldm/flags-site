@@ -1,13 +1,18 @@
 <template>
   <div class="titlebar">
     <h1>Where in the world?</h1>
-    <h3><font-awesome-icon icon="moon" />Dark Mode</h3>
+    <h3 @click="darkModeToggle"><font-awesome-icon icon="moon" /> Dark Mode</h3>
   </div>
 </template>
 
 <script>
 export default {
   name: 'TitleBar',
+  methods: {
+    darkModeToggle() {
+      this.$emit('darkModeToggle');
+    }
+  }
 }
 </script>
 
@@ -17,5 +22,10 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+h3 {
+  cursor: pointer;
+
 }
 </style>

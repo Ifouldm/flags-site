@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Titlebar />
+    <Titlebar  @darkModeToggle="darkModeToggle" />
     <Main />
   </div>
 </template>
@@ -11,9 +11,20 @@ import Main from './components/Main.vue';
 
 export default {
   name: 'App',
+  data: function() {
+    return {
+      darkMode: false
+    };
+  },
   components: {
     Titlebar,
     Main
+  },
+  methods: {
+    darkModeToggle() {
+      this.darkMode = !this.darkMode;
+      console.log(this.darkMode);
+    }
   }
 }
 </script>
@@ -27,11 +38,11 @@ export default {
 --DarkGray: hsl(0, 0%, 52%); /*(Light Mode Input) */
 --VeryLightGray: hsl(0, 0%, 98%); /*(Light Mode Background) */
 --White: hsl(0, 0%, 100%); /*(Dark Mode Text & Light Mode Elements) */
+--BoxShadow: 0.1rem 0.1rem 0.2rem 0.2rem hsla(0, 0%, 52%, 0.2);
 }
-#app {
-  font-family: 'Nunito Sans', sans-serif;
-}
+
 * {
+  font-family: 'Nunito Sans', sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;

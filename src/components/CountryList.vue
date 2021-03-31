@@ -19,6 +19,6 @@ export default {
 .results {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-gap: 10px;
+    grid-gap: 3rem;
 }
 </style>
