@@ -34,6 +34,8 @@ export default {
 .text {
   border: 0;
   border-radius: 0.3rem;
+  background-color: var(--BackgroundClear);
+  color: var(--TextLight);
   padding: 1rem 1rem 1rem 3rem;
   box-shadow: var(--BoxShadow);
 }

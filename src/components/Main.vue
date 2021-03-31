@@ -80,8 +80,8 @@ export default {
 <style>
 .body {
   padding: 1rem 4rem;
-  background-color: var(--VeryLightGray);
-  color: var(--VeryDarkBlue);
+  background-color: var(--BackgroundSecondary);
+  color: var(--TextNormal);
   height: 100%;
 }
 .inputs {
@@ -90,6 +90,6 @@ export default {
   margin: 1rem 0 2rem 0;
 }
 input {
-  color: var(--DarkGray);
+  color: var(--TextLight);
 }
 </style>

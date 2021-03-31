@@ -33,7 +33,8 @@ export default {
 select {
   padding: 1rem;
   border: 0;
-  background: white;
+  background: var(--BackgroundClear);
+  color: var(--TextLight);
   border-radius: 0.3rem;
   box-shadow: var(--BoxShadow);
 }
@@ -44,7 +45,8 @@ select:focus {
 
 option {
   padding: 0.5rem;
-  background: white;
+  background: var(--BackgroundClear);
+  color: var(--TextLight);
   border-radius: 0.3rem;
   box-shadow: var(--BoxShadow);
 }
