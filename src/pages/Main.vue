@@ -15,10 +15,10 @@
 </template>
 
 <script>
-import Searchbar from "../components/Searchbar.vue";
-import RegionSelect from "../components/RegionSelect.vue";
-import CountryList from "../components/CountryList.vue";
-import Pagination from "../components/Pagination.vue";
+import Searchbar from "@/components/Searchbar.vue";
+import RegionSelect from "@/components/RegionSelect.vue";
+import CountryList from "@/components/CountryList.vue";
+import Pagination from "@/components/Pagination.vue";
 
 export default {
     name: "Main",

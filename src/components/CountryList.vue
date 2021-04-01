@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import CountryCard from "../components/CountryCard.vue";
+import CountryCard from "@/components/CountryCard.vue";
 export default {
     name: "CountryList",
     components: {

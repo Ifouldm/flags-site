@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import Titlebar from "./components/Titlebar.vue";
+import Titlebar from "@/components/Titlebar.vue";
 
 export default {
     name: "App",

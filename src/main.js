@@ -8,10 +8,10 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import Vue from "vue";
-import App from "./App.vue";
 import VueRouter from "vue-router";
-import Main from "./pages/Main.vue";
-import CountryDetails from "./pages/CountryDetails.vue";
+import App from "@/App.vue";
+import Main from "@/pages/Main.vue";
+import CountryDetails from "@/pages/CountryDetails.vue";
 
 library.add(faSearch, faMoon, faArrowLeft, faAngleLeft, faAngleRight);
 
@@ -36,7 +36,6 @@ const routes = [
 ];
 
 const router = new VueRouter({
-    mode: "history",
     routes,
 });
 
