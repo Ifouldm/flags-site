@@ -1,15 +1,46 @@
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faMoon, faSearch } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import Vue from 'vue'
-import App from './App.vue'
+import { library } from "@fortawesome/fontawesome-svg-core";
+import {
+    faAngleLeft,
+    faAngleRight,
+    faArrowLeft,
+    faMoon,
+    faSearch,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import Vue from "vue";
+import App from "./App.vue";
+import VueRouter from "vue-router";
+import Main from "./pages/Main.vue";
+import CountryDetails from "./pages/CountryDetails.vue";
 
-library.add(faSearch, faMoon);
+library.add(faSearch, faMoon, faArrowLeft, faAngleLeft, faAngleRight);
 
-Vue.component('font-awesome-icon', FontAwesomeIcon);
+Vue.component("font-awesome-icon", FontAwesomeIcon);
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
+
+Vue.use(VueRouter);
+
+const routes = [
+    {
+        path: "/",
+        component: Main,
+        name: "Home",
+    },
+    {
+        path: "/country",
+        component: CountryDetails,
+        props: true,
+        name: "Country",
+    },
+];
+
+const router = new VueRouter({
+    mode: "history",
+    routes,
+});
 
 new Vue({
-  render: h => h(App),
-}).$mount('#app')
+    router,
+    render: (h) => h(App),
+}).$mount("#app");
