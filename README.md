@@ -4,51 +4,63 @@ This is a solution to the [REST Countries API with color theme switcher challeng
 
 ## Table of contents
 
-- [Overview](#overview)
-  - [The challenge](#the-challenge)
-  - [Screenshot](#screenshot)
-  - [Links](#links)
-- [My process](#my-process)
-  - [Built with](#built-with)
-  - [What I learned](#what-i-learned)
-  - [Continued development](#continued-development)
-  - [Useful resources](#useful-resources)
-- [Author](#author)
-- [Acknowledgments](#acknowledgments)
-
-**Note: Delete this note and update the table of contents based on what sections you keep.**
+-   [Overview](#overview)
+    -   [The challenge](#the-challenge)
+    -   [Screenshot](#screenshot)
+    -   [Links](#links)
+-   [My process](#my-process)
+    -   [Built with](#built-with)
+    -   [What I learned](#what-i-learned)
+    -   [Continued development](#continued-development)
+    -   [Useful resources](#useful-resources)
+-   [Author](#author)
+-   [Acknowledgments](#acknowledgments)
 
 ## Overview
+
+Create a responsive web application that uses an API to fetch data to be displayed and navigated. The website feature multiple pages and Light/Dark mode selection. Interactivity will include a search field and drop down filter as well as links to further details.
 
 ### The challenge
 
 Users should be able to:
 
-- See all countries from the API on the homepage
-- Search for a country using an `input` field
-- Filter countries by region
-- Click on a country to see more detailed information on a separate page
-- Click through to the border countries on the detail page
-- Toggle the color scheme between light and dark mode _(optional)_
+-   See all countries from the API on the homepage
+-   Search for a country using an `input` field
+-   Filter countries by region
+-   Click on a country to see more detailed information on a separate page
+-   Click through to the border countries on the detail page
+-   Toggle the color scheme between light and dark mode _(optional)_
 
 ### Screenshot
 
-![](./screenshot.jpg)
+#### Desktop Dark Mode
 
-Add a screenshot of your solution. The easiest way to do this is to use Firefox to view your project, right-click the page and select "Take a Screenshot". You can choose either a full-height screenshot or a cropped one based on how long the page is. If it's very long, it might be best to crop it.
+![Desktop Dark Mode](./screenshots/ss-flags-desktop-dark.png)
 
-Alternatively, you can use a tool like [FireShot](https://getfireshot.com/) to take the screenshot. FireShot has a free option, so you don't need to purchase it.
+#### Desktop Light Mode
 
-Then crop/optimize/edit your image however you like, add it to your project, and update the file path in the image above.
+![Desktop Light Mode](./screenshots/ss-flags-desktop.png)
 
-**Note: Delete this note and the paragraphs above when you add your screenshot. If you prefer not to add a screenshot, feel free to remove this entire section.**
+#### Mobile Dark Mode
+
+![Mobile Dark Mode](./screenshots/ss-flags-mobile-dark.png)
+
+#### Mobile Light Mode
+
+![Mobile Light Mode](./screenshots/ss-flags-mobile.png)
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+-   Solution URL: [Code](https://github.com/Ifouldm/flags-site)
+-   Live Site URL: [Live Site](http://github.obidex.com/flags-site)
 
 ## My process
+
+I decided to use Vue to further my skills in this technology and I thought this challenge was a good fit for a SPA (Single Page Application). I therefore started with the Vue CLI to create the Vue boilerplate. Using the techniques and layouts I have used in the previous sites I built the framework for the sites main page. Having worked extensivly with APIs I utilised my existing code to perform the API query, parse the data and create some state for the application. I then extracted some of the elements into seperate Vue components to a\) extend their functionality b\) Improve the reusability of the components and c\) Make the overall application structured and readable.
+
+The components could then be styled individually using the Vue `scoped` while retaining the generalised styles of the application.
+
+The initial API query returns a full dataset which is not too large so I opted to store this data and filter/query from state rather than request new data on each page change. This somewhat restricts the features and how new the data is but given the context I believe this was the best option.
 
 ## Project setup
 
@@ -56,19 +68,19 @@ Then crop/optimize/edit your image however you like, add it to your project, and
 npm install
 ```
 
-### Compiles and hot-reloads for development
+#### Compiles and hot-reloads for development
 
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+#### Compiles and minifies for production
 
 ```
 npm run build
 ```
 
-### Lints and fixes files
+#### Lints and fixes files
 
 ```
 npm run lint
@@ -76,66 +88,48 @@ npm run lint
 
 ### Built with
 
-- Semantic HTML5 markup
-- CSS custom properties
-- Flexbox
-- CSS Grid
-- Mobile-first workflow
-- [React](https://reactjs.org/) - JS library
-- [Next.js](https://nextjs.org/) - React framework
-- [Styled Components](https://styled-components.com/) - For styles
-
-**Note: These are just examples. Delete this note and replace the list above with your own choices**
+-   Semantic HTML5 markup
+-   CSS custom properties
+-   Flexbox
+-   Mobile-first workflow
+-   [Vue](https://vuejs.org/) - Vue Framework
+-   [Vue Router](https://router.vuejs.org/) - Vue Router
 
 ### What I learned
 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
+I even went beyond the scope of the project and implemented pagination so that the results could be navigated and visualised. I kept this component as generic as possible so that I can reuse it in the future.
 
-To see how you can add code snippets, see below:
+Pagination component:
 
 ```html
-<h1>Some HTML code I'm proud of</h1>
+<Pagination
+    class="pagination"
+    @pageChange="pageChange"
+    :totalRecords="selectedCountries.length"
+    :perPage="perPage"
+/>
 ```
 
-```css
-.proud-of-this-css {
-  color: papayawhip;
-}
-```
-
-```js
-const proudOfThisFunc = () => {
-  console.log("🎉");
-};
-```
-
-If you want more help with writing markdown, we'd recommend checking out [The Markdown Guide](https://www.markdownguide.org/) to learn more.
-
-**Note: Delete this note and the content within this section and replace with your own learnings.**
+As you can see it takes the total number of records and a number of records per page as props and emits an event on page change. The paginator then displays the first page, last page, closest pages with the current page highlighted as well as next and previous.
 
 ### Continued development
 
-Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
-
-**Note: Delete this note and the content within this section and replace with your own plans for continued development.**
+There are various areas that could be improved, I did not link the border countries to their details page as my architecture did not allow for this to be implemented easily and this was not the focus of the project, however if I ever come back to this project I may redesign to accomodate this.
 
 ### Useful resources
 
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
+For this project I mainly used my existing resources as well as the product documentation for Vue and Vue Router.
 
-**Note: Delete this note and replace the list above with resources that helped you during the challenge. These could come in handy for anyone viewing your solution or for yourself when you look back on this project in the future.**
+-   [Vue](https://vuejs.org/) - Vue Framework
+-   [Vue Router](https://router.vuejs.org/) - Vue Router
 
 ## Author
 
-- Website - [Add your name here](https://www.your-site.com)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
-- Twitter - [@yourusername](https://www.twitter.com/yourusername)
-
-**Note: Delete this note and add/remove/edit lines above based on what links you'd like to share.**
+-   Website - [Matthew Ifould](https://obidex.com)
+-   Frontend Mentor - [@ifouldm](https://www.frontendmentor.io/profile/ifouldm)
+-   Github - [ifouldm](https://github.com/ifouldm)
 
 ## Acknowledgments
 
-This is where you can give a hat tip to anyone who helped you out on this project. Perhaps you worked in a team or got some inspiration from someone else's solution. This is the perfect place to give them some credit.
-
-**Note: Delete this note and edit this section's content as necessary. If you completed this challenge by yourself, feel free to delete this section entirely.**
+[Coding Garden](https://coding.garden)
+Coding Garden helped push me towards Vue and having seen the benefits of the framework I have to agree that it is several advantages over React. His tutorials also helped with several other aspects.
