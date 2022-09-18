@@ -15,20 +15,20 @@
 </template>
 
 <script>
-import Searchbar from "@/components/Searchbar.vue";
-import RegionSelect from "@/components/RegionSelect.vue";
-import CountryList from "@/components/CountryList.vue";
-import Pagination from "@/components/Pagination.vue";
+import Searchbar from '@/components/Searchbar.vue';
+import RegionSelect from '@/components/RegionSelect.vue';
+import CountryList from '@/components/CountryList.vue';
+import Pagination from '@/components/Pagination.vue';
 
 export default {
-    name: "Main",
+    name: 'Main',
     data() {
         return {
             allCountries: [],
             selectedRegion: null,
             currentPage: 1,
             perPage: 8,
-            searchTerm: "",
+            searchTerm: '',
         };
     },
     components: {
@@ -52,8 +52,8 @@ export default {
                 )
                     filterOut = true;
                 const searchStr =
-                    country.name + country.region + country.capital;
-                const regex = new RegExp(this.searchTerm, "i");
+                    country.name.common + country.region + country.capital;
+                const regex = new RegExp(this.searchTerm, 'i');
                 if (this.searchTerm && !regex.test(searchStr)) filterOut = true;
                 return !filterOut;
             });
@@ -65,9 +65,7 @@ export default {
     },
     methods: {
         fetchData: async function() {
-            const jsonData = await fetch(
-                "https://restcountries.eu/rest/v2/all"
-            );
+            const jsonData = await fetch('https://restcountries.com/v3.1/all');
             this.allCountries = await jsonData.json();
         },
         regionChange(newRegion) {

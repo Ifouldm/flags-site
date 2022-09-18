@@ -1,8 +1,8 @@
 <template>
     <div class="card">
-        <img :src="country.flag" alt="country.name" />
+        <img :src="country.flags.png" :alt="country.name.common" />
         <div class="info">
-            <h2>{{ country.name }}</h2>
+            <h2>{{ country.name.common }}</h2>
             <h4>
                 Population: <span>{{ populationFormatted }}</span>
             </h4>
@@ -10,7 +10,7 @@
                 Region: <span>{{ country.region }}</span>
             </h4>
             <h4>
-                Captial: <span>{{ country.capital }}</span>
+                Captial: <span>{{ country.capital[0] }}</span>
             </h4>
         </div>
     </div>
@@ -18,13 +18,13 @@
 
 <script>
 export default {
-    name: "CountryCard",
-    props: ["country"],
+    name: 'CountryCard',
+    props: ['country'],
     computed: {
         populationFormatted() {
             return this.country.population
                 .toString()
-                .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
         },
     },
 };

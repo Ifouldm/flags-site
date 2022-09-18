@@ -1,19 +1,25 @@
 <template>
     <div class="body">
-        <div class="controls">
+        <div v-if="!country">
+            No Country Selected
+        </div>
+        <div class="controls" v-else>
             <button @click="back">
                 <font-awesome-icon icon="arrow-left" /> Back
             </button>
         </div>
         <div class="details">
             <div class="flag">
-                <img :src="country.flag" alt="country.name" />
+                <img :src="country.flags.png" :alt="country.name.common" />
             </div>
             <div class="info">
-                <h1>{{ country.name }}</h1>
+                <h1>{{ country.name.common }}</h1>
                 <div class="data">
                     <h4>
-                        Native Name: <span>{{ country.nativeName }}</span>
+                        Native Name:
+                        <span>{{
+                            Object.values(country.name.nativeName)[0].official
+                        }}</span>
                     </h4>
                     <h4>
                         Population: <span>{{ populationFormatted }}</span>
@@ -25,7 +31,7 @@
                         Sub Region: <span>{{ country.subregion }}</span>
                     </h4>
                     <h4>
-                        Captial: <span>{{ country.capital }}</span>
+                        Captial: <span>{{ country.capital[0] }}</span>
                     </h4>
                     <h4>
                         Top Level Domain: <span>{{ topLevelDomain }}</span>
@@ -50,31 +56,31 @@
 
 <script>
 export default {
-    name: "CountryDetails",
-    props: ["country"],
+    name: 'CountryDetails',
+    props: ['country'],
     computed: {
         populationFormatted() {
             return this.country.population
                 .toString()
-                .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
         },
         currencies() {
-            return this.country.currencies
-                .map((currency) => currency.name)
-                .join(", ");
+            return Object.values(this.country.currencies)
+                .map(currency => currency.name)
+                .join(', ');
         },
         languages() {
-            return this.country.languages.map((lang) => lang.name).join(", ");
+            return Object.values(this.country.languages).join(', ');
         },
         topLevelDomain() {
-            return this.country.topLevelDomain.join(", ");
-        },
+            return this.country.tld.join(', ');
+        }
     },
     methods: {
         back() {
             this.$router.back();
-        },
-    },
+        }
+    }
 };
 </script>
 

@@ -4,7 +4,7 @@
             :to="{ name: 'Country', params: { country } }"
             country="country"
             v-for="country in countries"
-            :key="country.name"
+            :key="country.name.common"
         >
             <CountryCard :country="country" />
         </router-link>
@@ -12,13 +12,13 @@
 </template>
 
 <script>
-import CountryCard from "@/components/CountryCard.vue";
+import CountryCard from '@/components/CountryCard.vue';
 export default {
-    name: "CountryList",
+    name: 'CountryList',
     components: {
         CountryCard,
     },
-    props: ["countries"],
+    props: ['countries'],
 };
 </script>
 
